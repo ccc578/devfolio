@@ -381,20 +381,23 @@ export default function AdminPage() {
 
   return (
     <Container>
-      <div className="mx-auto max-w-3xl py-12 sm:py-16">
+      <div className="mx-auto max-w-3xl py-14 sm:py-20">
         <Link
           to="/"
-          className="inline-flex items-center rounded text-xs text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-4 text-[12.5px] text-muted shadow-soft transition-all duration-200 ease-smooth hover:-translate-y-0.5 hover:text-ink hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           ← 返回首页
         </Link>
 
-        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <div className="mt-10">
+          <span className="chip">Admin</span>
+        </div>
+        <h1 className="display mt-5 text-[32px] leading-[1.05] text-ink sm:text-[42px]">
           编辑资料
         </h1>
-        <p className="mt-3 text-sm leading-6 text-muted">
+        <p className="mt-4 text-[14px] leading-7 text-muted">
           修改保存在当前浏览器的 localStorage，刷新即刻在站点生效。数据不会上传到任何服务器，也不会改动仓库里的{' '}
-          <code className="rounded bg-subtle px-1.5 py-0.5 font-mono text-[12px]">
+          <code className="rounded-md border border-line bg-subtle px-1.5 py-0.5 font-mono text-[12px]">
             src/config/
           </code>
           ，因此其他访客看到的仍是配置文件里的内容。

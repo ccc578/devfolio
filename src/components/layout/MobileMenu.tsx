@@ -69,7 +69,7 @@ export function MobileMenu({ activeHref }: { activeHref: string }) {
         onClick={() => setOpen(true)}
         aria-label="打开导航菜单"
         aria-expanded={open}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted transition-colors hover:bg-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:bg-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
       >
         <Menu className="h-5 w-5" aria-hidden="true" />
       </button>
@@ -77,7 +77,7 @@ export function MobileMenu({ activeHref }: { activeHref: string }) {
       {open ? (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-ink/25 backdrop-blur-sm"
+            className="absolute inset-0 bg-ink/30 backdrop-blur-sm"
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
@@ -86,22 +86,20 @@ export function MobileMenu({ activeHref }: { activeHref: string }) {
             role="dialog"
             aria-modal="true"
             aria-label="站点导航"
-            className="absolute inset-x-0 top-0 border-b border-line bg-page px-5 pb-6 pt-4 shadow-sm"
+            className="absolute inset-x-3 top-3 rounded-3xl border border-line bg-page/95 p-5 shadow-lift backdrop-blur-xl"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-                导航
-              </span>
+              <span className="label">导航</span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="关闭导航菜单"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted transition-colors hover:bg-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
-            <nav aria-label="移动端主导航" className="mt-2 flex flex-col">
+            <nav aria-label="移动端主导航" className="mt-3 flex flex-col gap-1">
               {site.nav.map((item) => {
                 const isAnchor = item.href.startsWith('#');
                 const active = activeHref === item.href;
@@ -112,8 +110,10 @@ export function MobileMenu({ activeHref }: { activeHref: string }) {
                     onClick={() => setOpen(false)}
                     aria-current={active ? 'true' : undefined}
                     className={cn(
-                      'flex items-center justify-between border-b border-line/70 py-4 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
-                      active ? 'text-accent' : 'text-ink',
+                      'flex items-center justify-between rounded-xl px-3 py-3.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                      active
+                        ? 'bg-accent/10 font-medium text-accent'
+                        : 'text-ink hover:bg-subtle',
                     )}
                   >
                     {item.label}

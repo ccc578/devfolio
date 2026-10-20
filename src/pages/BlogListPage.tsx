@@ -28,21 +28,24 @@ export default function BlogListPage() {
 
   return (
     <Container>
-      <div className="py-12 sm:py-16">
+      <div className="py-14 sm:py-20">
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 rounded text-xs text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-4 text-[12.5px] text-muted shadow-soft transition-all duration-200 ease-smooth hover:-translate-y-0.5 hover:text-ink hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
           返回首页
         </Link>
 
-        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">文章</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
+        <div className="mt-10">
+          <span className="chip">Writing</span>
+        </div>
+        <h1 className="display mt-5 text-[34px] leading-[1.05] text-ink sm:text-[46px]">文章</h1>
+        <p className="mt-4 max-w-2xl text-[14.5px] leading-7 text-muted">
           共 {publishedPosts.length} 篇。内容关于构建、部署、类型设计，以及踩过的坑。
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-9 flex flex-wrap gap-2">
           {tags.map((tag) => (
             <button
               key={tag}
@@ -50,10 +53,10 @@ export default function BlogListPage() {
               onClick={() => setActiveTag(tag)}
               aria-pressed={activeTag === tag}
               className={cn(
-                'rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                'inline-flex h-9 items-center rounded-full border px-4 text-[12.5px] transition-all duration-200 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
                 activeTag === tag
-                  ? 'border-accent/60 bg-accent/10 text-accent'
-                  : 'border-line bg-subtle text-muted hover:text-ink',
+                  ? 'border-transparent bg-accent text-onaccent shadow-glow'
+                  : 'border-line bg-surface text-muted shadow-soft hover:-translate-y-0.5 hover:text-ink hover:shadow-lift',
               )}
             >
               {tag}
@@ -61,11 +64,11 @@ export default function BlogListPage() {
           ))}
         </div>
 
-        <div className="mt-8 border-t border-line">
+        <div className="card mt-8 overflow-hidden">
           {posts.length > 0 ? (
             posts.map((post) => <PostCard key={post.slug} post={post} />)
           ) : (
-            <p className="py-10 text-sm text-muted">该标签下暂无文章。</p>
+            <p className="px-6 py-12 text-sm text-muted">该标签下暂无文章。</p>
           )}
         </div>
       </div>

@@ -5,30 +5,49 @@ import { experiences, profile } from '@/config';
 
 export function AboutSection() {
   return (
-    <section id="about" className="scroll-mt-24 border-b border-line py-16 sm:py-20">
+    <section id="about" className="scroll-mt-24 py-16 sm:py-24">
       <Container>
         <SectionHeading
-          index="01 / about"
+          index="01 — About"
           title="关于我"
           description="一段自我介绍，以及走到今天的时间线。"
         />
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <div className="space-y-5">
-            {profile.bio.map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-7 text-muted">
-                {paragraph}
-              </p>
-            ))}
-            <dl className="grid grid-cols-[72px_1fr] gap-y-2 border-t border-line pt-5 text-sm">
-              <dt className="text-muted">所在城市</dt>
-              <dd className="text-ink">{profile.location}</dd>
-              <dt className="text-muted">当前状态</dt>
-              <dd className="text-ink">{profile.availability.text}</dd>
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div>
+            <div className="max-w-measure space-y-5">
+              {profile.bio.map((paragraph, index) => (
+                <p
+                  key={paragraph}
+                  className={
+                    index === 0
+                      ? 'text-[15.5px] leading-8 text-ink'
+                      : 'text-[15px] leading-8 text-muted'
+                  }
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <dl className="mt-10 grid gap-3 sm:grid-cols-2">
+              <div className="card px-5 py-4">
+                <dt className="label">所在城市</dt>
+                <dd className="mt-2 text-sm font-medium text-ink">{profile.location}</dd>
+              </div>
+              <div className="card px-5 py-4">
+                <dt className="label">当前状态</dt>
+                <dd className="mt-2 text-sm font-medium text-ink">{profile.availability.text}</dd>
+              </div>
             </dl>
           </div>
 
-          <Timeline items={experiences} />
+          <div className="card p-6 sm:p-8">
+            <h3 className="display text-[18px] text-ink">时间线</h3>
+            <div className="mt-7">
+              <Timeline items={experiences} />
+            </div>
+          </div>
         </div>
       </Container>
     </section>

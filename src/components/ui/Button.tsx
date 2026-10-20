@@ -4,18 +4,21 @@ import { cn } from '@/lib/cn';
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md';
 
+/* 按钮：胶囊形，主操作走渐变填充，次操作走卡片底 + 发丝边 */
 const base =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page disabled:pointer-events-none disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border text-[13px] font-medium transition-all duration-200 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page disabled:pointer-events-none disabled:opacity-50';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent/90 dark:text-slate-950',
-  secondary: 'border border-line bg-surface text-ink hover:border-accent/60 hover:text-accent',
-  ghost: 'text-muted hover:bg-subtle hover:text-ink',
+  primary:
+    'border-transparent bg-accent-gradient text-onaccent shadow-glow hover:-translate-y-0.5 hover:shadow-lift',
+  secondary:
+    'border-line bg-surface text-ink shadow-soft hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent',
+  ghost: 'border-transparent bg-transparent text-muted hover:bg-subtle hover:text-ink',
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3 text-[13px]',
-  md: 'h-11 px-4 text-sm sm:px-5',
+  sm: 'h-9 px-4 text-[12px]',
+  md: 'h-11 px-5',
 };
 
 export function buttonStyles(

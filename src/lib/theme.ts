@@ -25,5 +25,5 @@ export function applyTheme(theme: Theme): void {
     /* 隐私模式下仅当前会话生效 */
   }
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', theme === 'dark' ? '#0b0f14' : '#ffffff');
+  if (meta) meta.setAttribute('content', theme === 'dark' ? '#08090e' : '#f8f9fc');
 }

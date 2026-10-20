@@ -4,39 +4,48 @@
 
 @layer base {
   :root {
-    --bg: 255 255 255;
-    --bg-subtle: 246 247 249;
+    /* 冷灰石墨底 + 紫罗兰强调：产品化界面，与暖纸/衬线风格无关 */
+    --bg: 248 249 252;
+    --bg-subtle: 240 242 248;
     --surface: 255 255 255;
-    --text: 17 24 39;
-    --text-muted: 75 85 99;
-    --border: 226 232 240;
-    --accent: 37 99 235;
-    --danger: 185 28 28;
+    --text: 15 17 23;
+    --text-muted: 92 100 117;
+    --border: 222 226 236;
+    --accent: 88 66 232;
+    --accent-2: 11 127 160;
+    --on-accent: 255 255 255;
+    --danger: 200 48 62;
 
-    --code-keyword: #cf222e;
-    --code-string: #0a3069;
-    --code-function: #8250df;
-    --code-number: #0550ae;
-    --code-comment: #6e7781;
-    --code-attr: #116329;
+    --code-keyword: #6d3fe0;
+    --code-string: #0d7a63;
+    --code-function: #1d4ed8;
+    --code-number: #b45309;
+    --code-comment: #8b93a7;
+    --code-attr: #0e7490;
+
+    color-scheme: light;
   }
 
   .dark {
-    --bg: 11 15 20;
-    --bg-subtle: 17 24 32;
-    --surface: 22 29 38;
-    --text: 230 234 240;
-    --text-muted: 154 164 178;
-    --border: 36 48 64;
-    --accent: 96 165 250;
-    --danger: 248 113 113;
+    --bg: 8 9 14;
+    --bg-subtle: 14 16 23;
+    --surface: 19 22 31;
+    --text: 236 238 246;
+    --text-muted: 148 156 174;
+    --border: 40 45 60;
+    --accent: 143 136 255;
+    --accent-2: 94 224 245;
+    --on-accent: 10 11 16;
+    --danger: 255 122 133;
 
-    --code-keyword: #ff7b72;
-    --code-string: #a5d6ff;
-    --code-function: #d2a8ff;
-    --code-number: #79c0ff;
-    --code-comment: #8b949e;
-    --code-attr: #7ee787;
+    --code-keyword: #c4b5fd;
+    --code-string: #7ee0b8;
+    --code-function: #93c5fd;
+    --code-number: #fcd34d;
+    --code-comment: #7c8598;
+    --code-attr: #67e8f9;
+
+    color-scheme: dark;
   }
 
   html {
@@ -48,7 +57,7 @@
   }
 
   ::selection {
-    background-color: rgb(var(--accent) / 0.2);
+    background-color: rgb(var(--accent) / 0.22);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -67,8 +76,88 @@
 }
 
 @layer components {
+  /* 元信息：等宽、极小、宽字距，用来标注编号与状态 */
+  .label {
+    @apply font-mono text-[10.5px] uppercase leading-4 tracking-[0.2em] text-muted;
+  }
+
+  /* 标题：无衬线 + 收紧字距，靠字重建立层级 */
+  .display {
+    @apply font-sans font-semibold tracking-[-0.03em];
+  }
+
+  /* 渐变文字：只用于强调短语，不承载长段落 */
+  .text-gradient {
+    background-image: linear-gradient(100deg, rgb(var(--accent)) 0%, rgb(var(--accent-2)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 胶囊标签 */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-3 py-1 font-mono text-[10.5px] uppercase leading-5 tracking-[0.16em] text-muted backdrop-blur;
+  }
+
+  /* 卡片：圆角 + 发丝边 + 一层很浅的投影 */
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-soft;
+  }
+
+  /* 渐隐分隔线 */
+  .rule {
+    @apply h-px w-full border-0;
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--accent) / 0.55),
+      rgb(var(--border) / 1) 22%,
+      rgb(var(--border) / 0) 100%
+    );
+  }
+
+  /* 页面底噪：两团极淡的极光 + 一层点阵，滚动时保持固定 */
+  .aurora {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .aurora::before,
+  .aurora::after {
+    content: '';
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+  }
+
+  .aurora::before {
+    top: -18rem;
+    left: 50%;
+    width: min(900px, 120vw);
+    height: 34rem;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgb(var(--accent) / 0.18), transparent 72%);
+  }
+
+  .aurora::after {
+    top: 12rem;
+    right: -14rem;
+    width: min(620px, 90vw);
+    height: 30rem;
+    background: radial-gradient(closest-side, rgb(var(--accent-2) / 0.14), transparent 72%);
+  }
+
+  .dot-field {
+    background-image: radial-gradient(rgb(var(--text) / 0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 82%);
+    mask-image: linear-gradient(to bottom, black, transparent 82%);
+  }
+
   .md-body {
-    @apply text-[15px] leading-7;
+    @apply text-[15px] leading-[1.85];
   }
 
   .md-body > * + * {
@@ -76,15 +165,15 @@
   }
 
   .md-body h2 {
-    @apply mt-11 scroll-mt-28 text-xl font-semibold tracking-tight text-ink;
+    @apply display mt-12 scroll-mt-28 text-[24px] leading-tight text-ink;
   }
 
   .md-body h3 {
-    @apply mt-8 scroll-mt-28 text-base font-semibold text-ink;
+    @apply display mt-9 scroll-mt-28 text-[18px] leading-snug text-ink;
   }
 
   .md-body p {
-    @apply text-[15px] leading-7 text-muted;
+    @apply text-[15px] leading-[1.85] text-muted;
   }
 
   .md-body strong {
@@ -92,15 +181,15 @@
   }
 
   .md-body a {
-    @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent;
+    @apply font-medium text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent;
   }
 
   .md-body ul {
-    @apply list-disc space-y-2 pl-5 text-muted;
+    @apply list-disc space-y-2 pl-5 text-muted marker:text-accent/60;
   }
 
   .md-body ol {
-    @apply list-decimal space-y-2 pl-5 text-muted;
+    @apply list-decimal space-y-2 pl-5 text-muted marker:text-muted;
   }
 
   .md-body li > p {
@@ -108,7 +197,7 @@
   }
 
   .md-body blockquote {
-    @apply border-l-2 border-accent/50 pl-4 text-muted;
+    @apply rounded-xl border border-line bg-subtle px-5 py-4 text-muted;
   }
 
   .md-body hr {
@@ -120,19 +209,19 @@
   }
 
   .md-body thead th {
-    @apply border-b border-line py-2 pr-4 text-left font-medium text-ink;
+    @apply border-b border-line py-2.5 pr-4 text-left font-semibold text-ink;
   }
 
   .md-body tbody td {
-    @apply border-b border-line/70 py-2 pr-4 align-top text-muted;
+    @apply border-b border-line/70 py-2.5 pr-4 align-top text-muted;
   }
 
   .md-body img {
-    @apply rounded-lg border border-line;
+    @apply rounded-xl border border-line;
   }
 
   .md-body :not(pre) > code {
-    @apply rounded border border-line bg-subtle px-1.5 py-0.5 font-mono text-[0.85em] text-ink;
+    @apply rounded-md border border-line bg-subtle px-1.5 py-0.5 font-mono text-[0.85em] text-ink;
   }
 
   .md-body pre code {
@@ -184,7 +273,7 @@
 .hljs-type,
 .hljs-built_in,
 .hljs-class .hljs-title {
-  color: var(--code-number);
+  color: var(--code-function);
 }
 
 .hljs-meta,

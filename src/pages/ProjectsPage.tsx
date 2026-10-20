@@ -15,21 +15,24 @@ export default function ProjectsPage() {
 
   return (
     <Container>
-      <div className="py-12 sm:py-16">
+      <div className="py-14 sm:py-20">
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 rounded text-xs text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-4 text-[12.5px] text-muted shadow-soft transition-all duration-200 ease-smooth hover:-translate-y-0.5 hover:text-ink hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
           返回首页
         </Link>
 
-        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">项目</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
+        <div className="mt-10">
+          <span className="chip">Projects</span>
+        </div>
+        <h1 className="display mt-5 text-[34px] leading-[1.05] text-ink sm:text-[46px]">项目</h1>
+        <p className="mt-4 max-w-2xl text-[14.5px] leading-7 text-muted">
           共 {sorted.length} 个项目。每个条目都包含背景、我负责的部分和技术结果。
         </p>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {sorted.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
