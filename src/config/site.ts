@@ -2,11 +2,11 @@ import type { SiteConfig } from '@/types';
 
 /** 站点级配置：导航、页脚、SEO 默认值。部署后请把 url 改为正式域名。 */
 export const site = {
-  title: '文 · 前端工程师',
-  description: '文的前端作品集：React / TypeScript / 工程化实践，项目作品与技术文章。',
+  title: '邢 · 前端工程师',
+  description: '邢的前端作品集：React / TypeScript / 工程化实践，项目作品与技术文章。',
   url: 'https://devfolio.example.com',
   locale: 'zh-CN',
-  author: '文',
+  author: '邢',
   ogImage: '/og-image.svg',
   nav: [
     { label: '关于', href: '#about' },

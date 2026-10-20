@@ -55,7 +55,7 @@ export function HeroSection({ profile }: { profile: Profile }) {
 
 ```ts
 export const profile = {
-  name: '文',
+  name: '邢',
   role: '前端工程师',
   headline: ['React', 'TypeScript'],
   slogan: '...',

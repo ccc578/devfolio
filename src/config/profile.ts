@@ -5,12 +5,12 @@ import type { Profile } from '@/types';
  * 必改字段：name / role / slogan / avatar / email / resumeUrl / socials
  */
 export const profile = {
-  name: '文',
+  name: '邢',
   role: '前端工程师',
   headline: ['React', 'TypeScript', '工程化'],
   slogan: '把复杂交互拆成可维护的组件，把想法在一个下午上线。',
   avatar: '/avatar.svg',
-  avatarAlt: '文的头像',
+  avatarAlt: '邢的头像',
   location: '杭州',
   email: 'wen@example.com',
   resumeUrl: '/resume/wen-resume.pdf',
@@ -33,7 +33,7 @@ export const profile = {
       label: '掘金',
       url: 'https://juejin.cn/user/wen',
       icon: 'BookOpen',
-      handle: '文',
+      handle: '邢',
     },
     {
       id: 'mail',
